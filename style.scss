@@ -6,6 +6,7 @@
 
 $background-color: black;
 $text-color: white;
+$shadow: 0px 0px 5px black;
 
 * {
     margin: 0px;
@@ -21,6 +22,7 @@ html {
 
 body {
     background-color: $background-color;
+    text-shadow: $shadow;
 }
 
 .home-content {
@@ -63,14 +65,36 @@ body {
         transform: scale(0.95);
         transition-duration: 500ms;
         cursor: pointer;
+        filter: blur(2px);
     }
     .active {
+        filter: blur(0px);
         transform: scale(1) translateX(2vw);
-        opacity: 0.9;
+        opacity: 0.8;
     }
 }
 
-@media only screen and (max-width: 800px) {
+.background {
+    filter: blur(200px);
+    position: fixed;
+    svg {
+        transition-duration: 10s;
+    }
+    #blob1 {
+        transform: translateX(50vw) translateY(-50vh);
+    }
+    #blob2 {
+        transform: translateX(-20vw) translateY(-150vh);
+    }
+    #blob3 {
+        transform: translateX(50vw) translateY(-200vh);
+    }
+    #blob4 {
+        transform: translateX(-50vw) translateY(-280vh);
+    }
+}
+
+@media only screen and (max-width: 1000px) {
     .lyrics {
         width: 95vw;
         p {

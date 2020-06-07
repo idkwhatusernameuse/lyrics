@@ -2,6 +2,7 @@ import { parseLyrics, createLyricInHTML } from './lrc_parser.js'
 import * as id3 from 'id3js'
 import { convertArrayBufferToImage } from './arraybuffer_image.js'
 import * as Animation from './animation.js'
+import { setColors } from './background.js'
 
 // Input buttons
 var lrc_input = document.getElementById('lrc-input')
@@ -45,6 +46,7 @@ song_input.onchange = e => {
                 'artist': data.artist,
                 'cover': convertArrayBufferToImage(data.images[0].data)
             }
+            setColors(song_data.cover)
             document.title = 'Lyrics: ' + song_data.artist + ' - ' + song_data.title
         })
         audio = new Audio(URL.createObjectURL(file))

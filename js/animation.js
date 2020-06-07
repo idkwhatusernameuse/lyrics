@@ -1,12 +1,15 @@
 var position = 0;
 var lyric_elements; 
 
+var interval
+var timeout
+
 export function start() {
     lyric_elements = document.querySelectorAll('.lyric-line')
     setTimeout(scroll, lyric_elements[position].dataset.timestamp * 1000)
+    interval = setInterval(animateBlobs, 15000)
 }
 
-var timeout;
 
 function scroll() {
     try {
@@ -32,8 +35,22 @@ export function changePosition(index) {
     for (let i = 0; i < lyric_elements.length; i++) {
         lyric_elements[i].className = 'lyric-line'
     }
-    console.log(timeout)
     clearTimeout(timeout)
     position = index;
     scroll()
+}
+
+function animateBlobs() {
+    let numberX = Math.floor(Math.random() * 100);
+    let numberY = Math.floor(Math.random() * -100);
+    document.querySelector('#blob1').childNodes[1].style.transform = 'translateX(' + numberX + 'px) translateY(' + numberY + ')'
+    numberX = Math.floor(Math.random() * -70);
+    numberY = Math.floor(Math.random() * -200);
+    document.querySelector('#blob2').childNodes[1].style.transform = 'translateX(' + numberX + 'px) translateY(' + numberY + ')'
+    numberX = Math.floor(Math.random() * 100);
+    numberY = Math.floor(Math.random() * -200);
+    document.querySelector('#blob3').childNodes[1].style.transform = 'translateX(' + numberX + 'px) translateY(' + numberY + ')'
+    numberX = Math.floor(Math.random() * -100);
+    numberY = Math.floor(Math.random() * -300);
+    document.querySelector('#blob4').childNodes[1].style.transform = 'translateX(' + numberX + 'px) translateY(' + numberY + ')'
 }
