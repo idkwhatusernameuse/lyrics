@@ -7,11 +7,11 @@ var timeout
 export function start() {
     lyric_elements = document.querySelectorAll('.lyric-line')
     setTimeout(scroll, lyric_elements[position].dataset.timestamp * 1000)
-    interval = setInterval(animateBlobs, 15000)
 }
 
 
 function scroll() {
+    console.log('Scroll called on ' + position)
     try {
         lyric_elements[position - 1].className = 'lyric-line'
     } catch (e) { }
@@ -23,11 +23,16 @@ function scroll() {
     let rect = element.getBoundingClientRect()
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     window.scrollTo(0, rect.top + scrollTop - (window.innerHeight * 0.30))
-    // Next lyric please
-    position++
     // Wait for next line
-    let time = parseFloat(lyric_elements[position].dataset.timestamp) - parseFloat(lyric_elements[position - 1].dataset.timestamp)
-    timeout = setTimeout(scroll, time * 1000);
+    let time;
+    if (position === 0) {
+        time = parseFloat(lyric_elements[position].dataset.timestamp)
+    } else {
+        time = parseFloat(lyric_elements[position].dataset.timestamp) - parseFloat(lyric_elements[position - 1].dataset.timestamp)
+    }
+    position++
+    console.log('new time' + time)
+    timeout = setTimeout(scroll, time * 1000)
 };
 
 export function changePosition(index) {
@@ -36,11 +41,11 @@ export function changePosition(index) {
         lyric_elements[i].className = 'lyric-line'
     }
     clearTimeout(timeout)
-    position = index;
+    position = index
     scroll()
 }
 
-function animateBlobs() {
+export function animateBlobs() {
     let numberX = Math.floor(Math.random() * 100);
     let numberY = Math.floor(Math.random() * -100);
     document.querySelector('#blob1').childNodes[1].style.transform = 'translateX(' + numberX + 'px) translateY(' + numberY + ')'
