@@ -16,6 +16,7 @@ $text-color: white;
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -23,8 +24,9 @@ body {
 }
 
 .home-content {
+    padding: 32px;
     h1 {
-        margin: 16px;
+        margin-bottom: 16px;
         font-size: 34px;
         font-weight: 600;
     }
@@ -32,9 +34,6 @@ body {
         text-decoration: none;
         margin-left: 8px;
         vertical-align: middle;
-    }
-    .buttons {
-        margin-left: 16px;
     }
     .button-div {
         margin-top: 8px;
@@ -51,8 +50,9 @@ body {
 }
 
 .lyrics {
-    padding-top: 50vh;
-    padding-bottom: 50vh;
+    display: none;
+    padding-top: 30vh;
+    padding-bottom: 80vh;
     width: 80vw;
     margin: auto;
     p {
@@ -62,17 +62,19 @@ body {
         opacity: 0.4;
         transform: scale(0.95);
         transition-duration: 500ms;
+        cursor: pointer;
     }
     .active {
-        transform: scale(1);
+        transform: scale(1) translateX(2vw);
         opacity: 0.9;
     }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 800px) {
     .lyrics {
         width: 95vw;
         p {
+            font-size: 40px;
             padding: 16px 32px 16px 32px;
         }
     }

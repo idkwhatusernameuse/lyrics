@@ -17,33 +17,41 @@ song_button.onclick = e => {
     song_input.click()
 }
 
+var lyrics
+
 lrc_input.onchange = e => {
     let file = e.target.files[0]
     if (file.name.includes('.lrc')) {
         // Read the file
         let reader = new FileReader();
         reader.readAsText(file,'UTF-8');
+        document.querySelector('#lrc-file-text').innerHTML = file.name
         reader.onload = readerEvent => {
             var content = readerEvent.target.result; // this is the content!
-            var lyrics = parseLyrics(content)
-            createLyricInHTML(lyrics)
+            lyrics = parseLyrics(content)
         }
     }
 }
+
 var audio
 
 song_input.onchange = e => {
     let file = e.target.files[0]
     if (file.name.includes('.mp3' || '.m4a' || '.ogg')) {
         id3.fromFile(file).then(data => {
+            document.querySelector('#song-file-text').innerHTML = file.name
             let song_data = {
                 'title': data.title,
                 'artist': data.artist,
                 'cover': convertArrayBufferToImage(data.images[0].data)
             }
-            //document.getElementById('cover').src = shit.cover
+            document.title = 'Lyrics: ' + song_data.artist + ' - ' + song_data.title
         })
         audio = new Audio(URL.createObjectURL(file))
+        audio.onended = () => {
+            document.querySelector('.home-content').style.display = 'block'
+            document.querySelector('.lyrics').style.display = 'none'
+        }
     }
 }
 
@@ -51,7 +59,13 @@ song_input.onchange = e => {
 var start = document.getElementById('start-lyrics')
 
 start.onclick = e => {
-    //audio.play()
+    createLyricInHTML(lyrics)
+    audio.play()
     document.querySelector('.home-content').style.display = 'none'
+    document.querySelector('.lyrics').style.display = 'block'
     Animation.start()
+}
+
+export function changeAudioPosition(seconds) {
+    audio.currentTime = seconds
 }
