@@ -413,4 +413,4 @@ module.exports=function(n){return new Promise(function(e,o){var r=document.creat
 },{}],0:[function(require,module,exports) {
 var b=require("UPRQ");b.register("js",require("yB44"));
 },{}]},{},[0,"nqs3"], null)
-//# sourceMappingURL=/home.9ce1ff2b.js.map
+//# sourceMappingURL=/lyrics/home.9ce1ff2b.js.map
