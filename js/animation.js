@@ -1,17 +1,13 @@
 var position = 0;
 var lyric_elements; 
-
-var interval
 var timeout
 
 export function start() {
     lyric_elements = document.querySelectorAll('.lyric-line')
-    setTimeout(scroll, lyric_elements[position].dataset.timestamp * 1000)
+    setTimeout(scroll, lyric_elements[0].dataset.timestamp * 1000)
 }
 
-
 function scroll() {
-    console.log('Scroll called on ' + position)
     try {
         lyric_elements[position - 1].className = 'lyric-line'
     } catch (e) { }
@@ -24,14 +20,8 @@ function scroll() {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     window.scrollTo(0, rect.top + scrollTop - (window.innerHeight * 0.30))
     // Wait for next line
-    let time;
-    if (position === 0) {
-        time = parseFloat(lyric_elements[position].dataset.timestamp)
-    } else {
-        time = parseFloat(lyric_elements[position].dataset.timestamp) - parseFloat(lyric_elements[position - 1].dataset.timestamp)
-    }
     position++
-    console.log('new time' + time)
+    let time = parseFloat(lyric_elements[position].dataset.timestamp) - parseFloat(lyric_elements[position - 1].dataset.timestamp)
     timeout = setTimeout(scroll, time * 1000)
 };
 
