@@ -1,0 +1,79 @@
+@use '@material/button/mdc-button';
+@use '@material/button';
+
+@include button.core-styles;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+$background-color: black;
+$text-color: white;
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Inter', sans-serif;
+    color: $text-color;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: $background-color;
+}
+
+.home-content {
+    h1 {
+        margin: 16px;
+        font-size: 34px;
+        font-weight: 600;
+    }
+    a {
+        text-decoration: none;
+        margin-left: 8px;
+        vertical-align: middle;
+    }
+    .buttons {
+        margin-left: 16px;
+    }
+    .button-div {
+        margin-top: 8px;
+        margin-bottom: 8px;
+        --mdc-theme-primary: rgb(139, 40, 219);
+    }
+    #start-lyrics {
+        --mdc-theme-primary: rgb(44, 44, 44);
+    }
+    input {
+        display: none;
+    }
+    
+}
+
+.lyrics {
+    padding-top: 50vh;
+    padding-bottom: 50vh;
+    width: 80vw;
+    margin: auto;
+    p {
+        font-size: 45px;
+        font-weight: 600;
+        padding: 16px 64px 16px 64px;
+        opacity: 0.4;
+        transform: scale(0.95);
+        transition-duration: 500ms;
+    }
+    .active {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .lyrics {
+        width: 95vw;
+        p {
+            padding: 16px 32px 16px 32px;
+        }
+    }
+}

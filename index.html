@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, , user-scalable=yes">
+    <title>Lyrics</title>
+    <link rel="stylesheet" href="./style.scss">
+</head>
+<body>
+    <div class="home-content">
+        <h1>Lyrics</h1>
+        <div class="buttons">
+            <div class="button-div">
+                <button class="mdc-button mdc-button--raised" id="lrc-button">
+                    <span class="mdc-button__label">Load .lrc file</span>
+                </button>
+                <a id="lrc-file-text">No file selected</a>
+            </div>
+            <div class="button-div">
+                <button class="mdc-button mdc-button--raised" id="song-button">
+                    <span class="mdc-button__label">Load song file</span>
+                </button>
+                <a id="song-file-text">No file selected</a>
+            </div>
+            <button class="mdc-button mdc-button--raised" id="start-lyrics">
+                <span class="mdc-button__label">Start</span>
+            </button>
+        </div>
+
+        <input id="lrc-input" type="file" name="lrc"/>
+        <input id="song-input" type="file" name="song"/>
+    </div>
+
+    <div class="lyrics"></div>
+    <script src="./js/home.js"></script>
+</body>
+</html>
