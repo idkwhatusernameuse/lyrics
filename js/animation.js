@@ -89,7 +89,7 @@ function getRandomInt(min, max) {
 
 window.onscroll = e => {
     // If lyrics are scrolling, don't detect for user scroll
-    if (is_lyric_scrolling) {
+    if (is_lyric_scrolling && !free_scroll) {
         if (Math.round(newPosition) < window.scrollY) {
             is_lyric_scrolling = true
         } else if (Math.round(newPosition) === window.scrollY) {
