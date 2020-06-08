@@ -80,5 +80,5 @@ start.onclick = e => {
 export function changeAudioPosition(seconds) {
     audio.currentTime = seconds
 }
-
-setInterval(Animation.animateBlobs, 1000)
+Animation.animateBlobs()
+setInterval(Animation.animateBlobs, 5000)

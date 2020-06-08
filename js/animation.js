@@ -66,18 +66,25 @@ export function changePosition(index) {
 
 // Animate background blobs
 export function animateBlobs() {
-    let numberX = Math.floor(Math.random() * 100);
-    let numberY = Math.floor(Math.random() * -100);
-    document.querySelector('#blob1').childNodes[1].style.transform = 'translateX(' + numberX + 'px) translateY(' + numberY + ')'
-    numberX = Math.floor(Math.random() * -70);
-    numberY = Math.floor(Math.random() * -200);
-    document.querySelector('#blob2').childNodes[1].style.transform = 'translateX(' + numberX + 'px) translateY(' + numberY + ')'
-    numberX = Math.floor(Math.random() * 100);
-    numberY = Math.floor(Math.random() * -200);
-    document.querySelector('#blob3').childNodes[1].style.transform = 'translateX(' + numberX + 'px) translateY(' + numberY + ')'
-    numberX = Math.floor(Math.random() * -100);
-    numberY = Math.floor(Math.random() * -300);
-    document.querySelector('#blob4').childNodes[1].style.transform = 'translateX(' + numberX + 'px) translateY(' + numberY + ')'
+    let numberX = getRandomInt(0, 100)
+    let numberY = getRandomInt(-100, 0)
+    document.querySelector('#blob1').style.transform = 'translateX(' + numberX + 'vw) translateY(' + numberY + 'vh)'
+    numberX = getRandomInt(-100, 0)
+    numberY = getRandomInt(-200, -100)
+    document.querySelector('#blob2').style.transform = 'translateX(' + numberX + 'vw) translateY(' + numberY + 'vh)'
+    numberX = getRandomInt(0, 100)
+    numberY = getRandomInt(-200, -300)
+    document.querySelector('#blob3').style.transform = 'translateX(' + numberX + 'vw) translateY(' + numberY + 'vh)'
+    numberX = getRandomInt(-100, 0)
+    numberY = getRandomInt(-200, -300)
+    document.querySelector('#blob4').style.transform = 'translateX(' + numberX + 'vw) translateY(' + numberY + 'vh)'
+}
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 window.onscroll = e => {
