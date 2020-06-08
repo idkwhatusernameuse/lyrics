@@ -53,6 +53,8 @@ song_input.onchange = e => {
         audio.onended = () => {
             document.querySelector('.home-content').style.display = 'block'
             document.querySelector('.lyrics').style.display = 'none'
+            document.querySelector('.lyrics').style.transform = 'translateY(0px)'
+            document.querySelectorAll('.lyric-line').forEach(e => { e.remove() })
         }
     }
 }

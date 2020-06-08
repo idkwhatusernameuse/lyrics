@@ -53,16 +53,19 @@ body {
 
 .lyrics {
     display: none;
-    padding-top: 30vh;
+    padding-top: 20vh;
     padding-bottom: 80vh;
     width: 80vw;
     margin: auto;
+    transition-timing-function: cubic-bezier(.64,.13,.48,1);
+    transition-duration: 500ms;
     p {
         font-size: 45px;
         font-weight: 600;
         padding: 16px 64px 16px 64px;
         opacity: 0.4;
         transform: scale(0.95);
+        //transition-timing-function: cubic-bezier(.64,.13,.48,1);
         transition-duration: 500ms;
         cursor: pointer;
         filter: blur(2px);
@@ -101,5 +104,11 @@ body {
             font-size: 40px;
             padding: 16px 32px 16px 32px;
         }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .background {
+        width: 850px;
     }
 }
