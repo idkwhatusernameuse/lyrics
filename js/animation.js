@@ -64,6 +64,7 @@ export function changePosition(index) {
     nextLine()
 }
 
+// Animate background blobs
 export function animateBlobs() {
     let numberX = Math.floor(Math.random() * 100);
     let numberY = Math.floor(Math.random() * -100);
@@ -80,13 +81,14 @@ export function animateBlobs() {
 }
 
 window.onscroll = e => {
+    // If lyrics are scrolling, don't detect for user scroll
     if (is_lyric_scrolling) {
         if (Math.round(newPosition) < window.scrollY) {
             is_lyric_scrolling = true
         } else if (Math.round(newPosition) === window.scrollY) {
             is_lyric_scrolling = false
         }
-    } else {
+    } else { // Lyrics aren't scrolling, if user scrolls, stop the lyrics scrolling
         free_scroll = true
     }
 }

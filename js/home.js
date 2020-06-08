@@ -20,6 +20,7 @@ song_button.onclick = e => {
 
 var lyrics
 
+// Once a .lrc file is selected, parse the file
 lrc_input.onchange = e => {
     let file = e.target.files[0]
     if (file.name.includes('.lrc')) {
@@ -36,24 +37,30 @@ lrc_input.onchange = e => {
 
 var audio
 
+// Once an audio file is selected, get the ID3 tags and cover
 song_input.onchange = e => {
     let file = e.target.files[0]
     if (file.name.includes('.mp3' || '.m4a' || '.ogg')) {
+        // Get ID3 tags and cover
         id3.fromFile(file).then(data => {
             document.querySelector('#song-file-text').innerHTML = file.name
             let song_data = {
                 'title': data.title,
                 'artist': data.artist,
-                'cover': convertArrayBufferToImage(data.images[0].data)
+                'cover': convertArrayBufferToImage(data.images[0].data) // Convert ArrayBuffer to blob
             }
+            // Change background with cover colors
             setColors(song_data.cover)
+            // Change the document title
             document.title = 'Lyrics: ' + song_data.artist + ' - ' + song_data.title
         })
         audio = new Audio(URL.createObjectURL(file))
+        // When audio ends, return to the main screen
         audio.onended = () => {
             document.querySelector('.home-content').style.display = 'block'
             document.querySelector('.lyrics').style.display = 'none'
             document.querySelector('.lyrics').style.transform = 'translateY(0px)'
+            // Remove all lyric lines from HTML
             document.querySelectorAll('.lyric-line').forEach(e => { e.remove() })
         }
     }
@@ -74,4 +81,4 @@ export function changeAudioPosition(seconds) {
     audio.currentTime = seconds
 }
 
-setInterval(Animation.animateBlobs, 15000)
+setInterval(Animation.animateBlobs, 1000)
