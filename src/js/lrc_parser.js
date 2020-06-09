@@ -1,5 +1,5 @@
 import { changePosition } from './animation.js'
-import { changeAudioPosition, resume } from './home.js'
+import { changeAudioPosition, resume } from './main.js'
 
 export function parseLyrics(lrc) {
     let lines = lrc.match(/[^\r\n]+/g) // https://stackoverflow.com/a/5035058

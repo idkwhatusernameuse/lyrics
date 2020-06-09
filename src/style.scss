@@ -97,16 +97,16 @@ body {
     svg {
         transition-duration: 5s;
     }
-    #blob1 {
+    .blob1 {
         transform: translateX(50vw) translateY(-50vh);
     }
-    #blob2 {
+    .blob2 {
         transform: translateX(-20vw) translateY(-150vh);
     }
-    #blob3 {
+    .blob3 {
         transform: translateX(50vw) translateY(-200vh);
     }
-    #blob4 {
+    .blob4 {
         transform: translateX(-50vw) translateY(-280vh);
     }
 }

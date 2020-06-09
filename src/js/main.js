@@ -96,21 +96,20 @@ setInterval(Animation.animateBlobs, 5000)
 
 
 // Play pause button
-var play_pause = document.querySelector('#playpause')
+var play_pause = document.querySelector('.playpause')
 
 export function resume() {
-    console.log('resume')
     window.state = true
     Animation.resume()
     audio.play()
-    document.querySelector('#playpause_icon').innerHTML = 'pause'
+    document.querySelector('.playpause_icon').innerHTML = 'pause'
 }
 
 export function pause() {
     window.state = false
     Animation.pause()
     audio.pause()
-    document.querySelector('#playpause_icon').innerHTML = 'play_arrow'
+    document.querySelector('.playpause_icon').innerHTML = 'play_arrow'
 }
 
 play_pause.onclick = e => {
@@ -122,7 +121,7 @@ play_pause.onclick = e => {
 }
 
 // Resume scrolling
-var resume_scrolling = document.querySelector('#resume_scrolling')
+var resume_scrolling = document.querySelector('.resume_scrolling')
 
 resume_scrolling.onclick = e => {
     Animation.resumeScrolling()

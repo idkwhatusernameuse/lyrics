@@ -16,7 +16,6 @@
     "node-vibrant": "^3.1.5"
   },
   "devDependencies": {
-    "cssnano": "^4.1.10",
     "sass": "^1.26.8"
   },
   "sass": {

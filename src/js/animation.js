@@ -20,7 +20,6 @@ var resumeTime
 
 export function resume() {
     resumeTime = Date.now() - resumeTime
-    console.log(resumeTime)
     timeout = setTimeout(nextLine, resumeTime)
 }
 
@@ -77,16 +76,16 @@ export function changePosition(index) {
 export function animateBlobs() {
     let numberX = getRandomInt(0, 100)
     let numberY = getRandomInt(-100, 0)
-    document.querySelector('#blob1').style.transform = 'translateX(' + numberX + 'vw) translateY(' + numberY + 'vh)'
+    document.querySelector('.blob1').style.transform = 'translateX(' + numberX + 'vw) translateY(' + numberY + 'vh)'
     numberX = getRandomInt(-100, 0)
     numberY = getRandomInt(-200, -100)
-    document.querySelector('#blob2').style.transform = 'translateX(' + numberX + 'vw) translateY(' + numberY + 'vh)'
+    document.querySelector('.blob2').style.transform = 'translateX(' + numberX + 'vw) translateY(' + numberY + 'vh)'
     numberX = getRandomInt(0, 100)
     numberY = getRandomInt(-200, -300)
-    document.querySelector('#blob3').style.transform = 'translateX(' + numberX + 'vw) translateY(' + numberY + 'vh)'
+    document.querySelector('.blob3').style.transform = 'translateX(' + numberX + 'vw) translateY(' + numberY + 'vh)'
     numberX = getRandomInt(-100, 0)
     numberY = getRandomInt(-200, -300)
-    document.querySelector('#blob4').style.transform = 'translateX(' + numberX + 'vw) translateY(' + numberY + 'vh)'
+    document.querySelector('.blob4').style.transform = 'translateX(' + numberX + 'vw) translateY(' + numberY + 'vh)'
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
@@ -97,7 +96,7 @@ function getRandomInt(min, max) {
 }
 
 function resumeAutonatticScrolling() {
-    document.querySelector('#resume_scrolling').classList.add('mdc-fab--exited')
+    document.querySelector('.resume_scrolling').classList.add('mdc-fab--exited')
     lyric_elements.forEach(e => { e.classList.add('inactive') })
     free_scroll = false
     scrollActiveLine(true)
@@ -106,7 +105,7 @@ function resumeAutonatticScrolling() {
 function stopAutomatticScrolling() {
     free_scroll = true
     document.querySelectorAll('.inactive').forEach(e => { e.classList.remove('inactive') })
-    document.querySelector('#resume_scrolling').classList.remove('mdc-fab--exited')
+    document.querySelector('.resume_scrolling').classList.remove('mdc-fab--exited')
 }
 
 window.onscroll = e => {
