@@ -12,7 +12,7 @@
 
 $background-color: black;
 $text-color: white;
-$shadow: 0px 0px 5px black;
+$shadow: 0px 2px 5px black;
 
 .mdc {
     @include ripple.surface;
@@ -35,7 +35,6 @@ html {
 
 body {
     background-color: $background-color;
-    text-shadow: $shadow;
 }
 
 .main {
@@ -88,7 +87,7 @@ body {
     .active {
         filter: blur(0px);
         transform: scale(1) translateX(2vw);
-        opacity: 0.8;
+        opacity: 0.6;
     }
 }
 
