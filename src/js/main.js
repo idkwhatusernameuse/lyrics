@@ -4,9 +4,12 @@ import { convertArrayBufferToImage } from './arraybuffer_image.js'
 import * as Animation from './animation.js'
 import { setColors } from './background.js'
 import {MDCRipple} from '@material/ripple';
+import { applyUIforLargerScreens, isSmallScreen } from './ui.js'
 
 // Material Components Ripple
 MDCRipple.attachTo(document.querySelector('.mdc'));
+
+applyUIforLargerScreens()
 
 // Input buttons
 var lrc_input = document.getElementById('lrc-input')
@@ -68,7 +71,7 @@ song_input.onchange = e => {
             document.querySelector('.main').style.display = 'block'
             document.querySelector('.lyrics').style.display = 'none'
             document.querySelector('.lyrics').style.transform = 'translateY(0px)'
-            document.querySelectorAll('.overlay').forEach(e => { e.style.display = 'none'})
+            document.querySelectorAll('.overlay').forEach(e => { e.style.visibility = 'hidden'})
             // Remove all lyric lines from HTML
             document.querySelectorAll('.lyric-line').forEach(e => { e.remove() })
         }
@@ -83,7 +86,7 @@ start.onclick = e => {
     audio.play()
     document.querySelector('.main').style.display = 'none'
     document.querySelector('.lyrics').style.display = 'inherit'
-    document.querySelectorAll('.overlay').forEach(e => { e.style.display = 'flex'})
+    document.querySelectorAll('.overlay').forEach(e => { e.style.visibility = 'visible'})
     Animation.start()
     window.state = true
 }

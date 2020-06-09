@@ -6,13 +6,8 @@
 @use '@material/button';
 @use "@material/fab/mdc-fab";
 @use "@material/ripple";
-
 @include button.core-styles;
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-
-$background-color: black;
-$text-color: white;
-$shadow: 0px 2px 5px black;
 
 .mdc {
     @include ripple.surface;
@@ -25,7 +20,8 @@ $shadow: 0px 2px 5px black;
     margin: 0px;
     padding: 0px;
     font-family: 'Inter', sans-serif;
-    color: $text-color;
+    color: white;
+    transition-duration: 1s;
 }
 
 html {
@@ -34,16 +30,23 @@ html {
 }
 
 body {
-    background-color: $background-color;
+    background-color: black;
+}
+
+h1 {
+    font-weight: 600;
+}
+
+.wrapper {
+    position: relative;
+    margin: 32px;
 }
 
 .main {
     z-index: 1;
-    padding: 32px;
     h1 {
         margin-bottom: 16px;
         font-size: 34px;
-        font-weight: 600;
     }
     a {
         text-decoration: none;
@@ -60,22 +63,14 @@ body {
     input {
         display: none;
     }
-    
 }
 
 .lyrics {
     z-index: 2;
     display: none;
-    padding-top: 17vh;
-    padding-bottom: 80vh;
-    width: 80vw;
-    margin: auto;
-    transition-timing-function: cubic-bezier(.64,.13,.48,1);
-    transition-duration: 500ms;
+    position: absolute;
     p {
-        font-size: 45px;
         font-weight: 600;
-        padding: 16px 64px 16px 64px;
         opacity: 0.4;
         transform: scale(0.95);
         transition-duration: 500ms;
@@ -86,15 +81,15 @@ body {
     }
     .active {
         filter: blur(0px);
-        transform: scale(1) translateX(2vw);
+        transform: scale(1) translateX(1.5vw);
         opacity: 0.8;
     }
 }
 
 .background {
-    filter: blur(200px);
     width: 100vw;
     height: 100vh;
+    filter: blur(200px);
     position: fixed;
     svg {
         transition-duration: 5s;
@@ -113,11 +108,7 @@ body {
     }
 }
 
-.wrapper {
-    position: relative;
-}
-
-.main, .overlay, .lyrics {
+.main, .overlay {
     position: absolute;
     left: 0px;
 }
@@ -131,48 +122,26 @@ body {
 }
 
 .overlay {
-    width: 100vw;
-    padding: 32px 6vw 32px 6vw;
+    width: 40vw;
     position: fixed;
     z-index: 3;
     transition-duration: 1s;
+    visibility: hidden;
 }
 
 .song-info {
-    display: none;
-    align-items: center;
     img {
-        box-shadow: $shadow;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.493);
         border-radius: 10px;
-        width: 75px;
-        height: 75px;
+        width: 25vw;
+        height: 25vw;
         margin-right: 16px;
     }
 }
 
 .controls {
-    display: none;
     bottom: 0;
     .mdc-fab {
         margin-right: 16px;
-    }
-}
-
-@media only screen and (max-width: 1000px) {
-    .overlay {
-        padding: 32px 42px 32px 42px;
-    }
-    .lyrics {
-        width: 95vw;
-        p {
-            font-size: 40px;
-            padding: 16px 32px 16px 32px;
-        }
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    .background {
-        width: 850px;
     }
 }

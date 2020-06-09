@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, , user-scalable=yes">
     <title>Lyrics</title>
-    <link rel="stylesheet" href="./style.scss">
+    <link rel="stylesheet" href="./styles/general.scss">
+    <link rel="stylesheet" href="./styles/smallUI.scss">
+    <link rel="stylesheet" href="./styles/largeUI.scss">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
@@ -51,7 +53,7 @@
     
         <div class="lyrics"></div>
 
-        <div class="song-info overlay">
+        <div class="overlay song-info">
             <img id="cover">
             <div>
                 <h1 id="title">Title</h1>
@@ -59,7 +61,7 @@
             </div>
         </div>
 
-        <div class="controls overlay">
+        <div class="overlay controls">
             <button class="mdc-fab mdc playpause" aria-label="Play/pause">
                 <div class="mdc-fab__ripple"></div>
                 <span class="mdc-fab__icon material-icons playpause_icon">pause</span>

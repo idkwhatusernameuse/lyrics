@@ -48,12 +48,13 @@ function highlightNextLine() {
     lyric_elements[position].classList.add('active')
 }
 
-function scrollActiveLine(previous) {
+export function scrollActiveLine(previous) {
     // Calculate how far is the next element from the top of the document
     if (previous) position--
     let rect = lyric_elements[position].getBoundingClientRect()
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    newPosition = rect.top + scrollTop - (window.innerHeight * 0.17)
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    let topPadding = document.body.className === 'largeUI' ? 0.35 : 0.17
+    newPosition = rect.top + scrollTop - (window.innerHeight * topPadding)
     // Scroll
     window.scrollTo(0, newPosition)
     if (previous) position++
@@ -95,7 +96,7 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function resumeAutonatticScrolling() {
+export function resumeAutonatticScrolling() {
     document.querySelector('.resume_scrolling').classList.add('mdc-fab--exited')
     lyric_elements.forEach(e => { e.classList.add('inactive') })
     free_scroll = false

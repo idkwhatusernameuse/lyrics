@@ -1,0 +1,30 @@
+.largeUI {
+    .lyrics {
+        padding-top: 35vh;
+        padding-bottom: 20vh;
+        width: 60vw;
+        right: 0px;
+        p {
+            font-size: 60px;
+            margin: 32px;
+            padding: 16px 0px 16px 0px;
+        }
+    }
+    .song-info {
+        display: grid;
+        justify-content: center;
+        text-align: center;
+        align-content: center;
+        height: 100vh;
+        div {
+            padding-top: 16px;
+        }
+    }
+    .controls {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-content: center;
+        margin-bottom: 6vh;
+    }
+}
