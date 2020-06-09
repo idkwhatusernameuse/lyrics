@@ -91,9 +91,9 @@ start.onclick = e => {
 export function changeAudioPosition(seconds) {
     audio.currentTime = seconds
 }
+
 Animation.animateBlobs()
 setInterval(Animation.animateBlobs, 5000)
-
 
 // Play pause button
 var play_pause = document.querySelector('.playpause')

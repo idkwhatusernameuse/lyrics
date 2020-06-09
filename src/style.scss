@@ -93,6 +93,8 @@ body {
 
 .background {
     filter: blur(200px);
+    width: 100vw;
+    height: 100vh;
     position: fixed;
     svg {
         transition-duration: 5s;
