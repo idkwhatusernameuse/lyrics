@@ -3,6 +3,10 @@ import * as id3 from 'id3js'
 import { convertArrayBufferToImage } from './arraybuffer_image.js'
 import * as Animation from './animation.js'
 import { setColors } from './background.js'
+import {MDCRipple} from '@material/ripple';
+
+// Material Components Ripple
+MDCRipple.attachTo(document.querySelector('.mdc'));
 
 // Input buttons
 var lrc_input = document.getElementById('lrc-input')
@@ -51,15 +55,20 @@ song_input.onchange = e => {
             }
             // Change background with cover colors
             setColors(song_data.cover)
+            // Set song info
+            document.querySelector('#cover').src = song_data.cover 
+            document.querySelector('#title').innerHTML = song_data.title 
+            document.querySelector('#artist').innerHTML = song_data.artist 
             // Change the document title
             document.title = 'Lyrics: ' + song_data.artist + ' - ' + song_data.title
         })
         audio = new Audio(URL.createObjectURL(file))
         // When audio ends, return to the main screen
         audio.onended = () => {
-            document.querySelector('.home-content').style.display = 'block'
+            document.querySelector('.main').style.display = 'block'
             document.querySelector('.lyrics').style.display = 'none'
             document.querySelector('.lyrics').style.transform = 'translateY(0px)'
+            document.querySelectorAll('.overlay').forEach(e => { e.style.display = 'none'})
             // Remove all lyric lines from HTML
             document.querySelectorAll('.lyric-line').forEach(e => { e.remove() })
         }
@@ -72,9 +81,11 @@ var start = document.getElementById('start-lyrics')
 start.onclick = e => {
     createLyricInHTML(lyrics)
     audio.play()
-    document.querySelector('.home-content').style.display = 'none'
-    document.querySelector('.lyrics').style.display = 'block'
+    document.querySelector('.main').style.display = 'none'
+    document.querySelector('.lyrics').style.display = 'inherit'
+    document.querySelectorAll('.overlay').forEach(e => { e.style.display = 'flex'})
     Animation.start()
+    window.state = true
 }
 
 export function changeAudioPosition(seconds) {
@@ -82,3 +93,49 @@ export function changeAudioPosition(seconds) {
 }
 Animation.animateBlobs()
 setInterval(Animation.animateBlobs, 5000)
+
+
+// Play pause button
+var play_pause = document.querySelector('#playpause')
+
+export function resume() {
+    console.log('resume')
+    window.state = true
+    Animation.resume()
+    audio.play()
+    document.querySelector('#playpause_icon').innerHTML = 'pause'
+}
+
+export function pause() {
+    window.state = false
+    Animation.pause()
+    audio.pause()
+    document.querySelector('#playpause_icon').innerHTML = 'play_arrow'
+}
+
+play_pause.onclick = e => {
+    if (window.state) {
+        pause()
+    } else {
+        resume()
+    }
+}
+
+// Resume scrolling
+var resume_scrolling = document.querySelector('#resume_scrolling')
+
+resume_scrolling.onclick = e => {
+    Animation.resumeScrolling()
+    resume_scrolling.classList.add('mdc-fab--exited')
+}
+
+// Hide controls when mouse has not moved for 5 seconds
+var hide_timeout
+
+window.onpointermove = () => {
+    document.querySelector('.controls').style.opacity = 1
+    if (hide_timeout !== undefined) clearTimeout(hide_timeout)
+    hide_timeout = setTimeout(function() {
+        document.querySelector('.controls').style.opacity = 0
+    }, 5000)
+}

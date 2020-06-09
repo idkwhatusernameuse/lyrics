@@ -10,6 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "@material/button": "^6.0.0",
+    "@material/fab": "^6.0.0",
+    "@material/ripple": "^6.0.0",
     "id3js": "^2.1.1",
     "node-vibrant": "^3.1.5"
   },

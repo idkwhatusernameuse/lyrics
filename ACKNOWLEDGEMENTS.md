@@ -1,6 +1,6 @@
 # Acknowledgements
 
-### @material/button
+### Material Components for Web
 
     The MIT License
 

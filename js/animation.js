@@ -16,48 +16,58 @@ export function start() {
     resume()
 }
 
+var resumeTime
+
 export function resume() {
-    timeout = setTimeout(nextLine, lyric_elements[0].dataset.timestamp * 1000)
+    resumeTime = Date.now() - resumeTime
+    console.log(resumeTime)
+    timeout = setTimeout(nextLine, resumeTime)
 }
 
 export function pause() {
+    resumeTime += Date.now() - resumeTime
     clearTimeout(timeout)
 }
 
 function nextLine() {
     is_lyric_scrolling = true
     highlightNextLine()
-    if (!free_scroll) scrollNextLine()
+    if (!free_scroll) scrollActiveLine()
     position++
-    let time = parseFloat(lyric_elements[position].dataset.timestamp) - parseFloat(lyric_elements[position - 1].dataset.timestamp)
+    resumeTime = Date.now()
+    let time = parseFloat(lyric_elements[position].dataset.timestamp) - parseFloat(lyric_elements[position - 1].dataset.timestamp)   
     timeout = setTimeout(nextLine, time * 1000)
 }
 
 function highlightNextLine() {
     // Make any other line inactive
     try {
-        lyric_elements[position - 1].className = 'lyric-line'
+        lyric_elements[position - 1].classList.remove('active')
+        if (!free_scroll) lyric_elements[position - 1].classList.add('inactive')
     } catch (e) { }
     // Make it the active one
-    lyric_elements[position].className = 'lyric-line active'
+    console.log('highlight ' + position)
+    lyric_elements[position].classList.add('active')
 }
 
-function scrollNextLine() {
+function scrollActiveLine(previous) {
     // Calculate how far is the next element from the top of the document
+    if (previous) position--
     let rect = lyric_elements[position].getBoundingClientRect()
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    newPosition = rect.top + scrollTop - (window.innerHeight * 0.20)
+    newPosition = rect.top + scrollTop - (window.innerHeight * 0.17)
     // Scroll
     window.scrollTo(0, newPosition)
+    if (previous) position++
 };
 
 // This function changes the active lyric
 export function changePosition(index) {
     is_lyric_scrolling = true
-    free_scroll = false
+    resumeAutonatticScrolling()
     // Clear the active state for all elements. This is inefficient so it should be changed.
     for (let i = 0; i < lyric_elements.length; i++) {
-        lyric_elements[i].className = 'lyric-line'
+        lyric_elements[i].className = 'lyric-line inactive'
     }
     clearTimeout(timeout)
     position = index
@@ -87,6 +97,19 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function resumeAutonatticScrolling() {
+    document.querySelector('#resume_scrolling').classList.add('mdc-fab--exited')
+    lyric_elements.forEach(e => { e.classList.add('inactive') })
+    free_scroll = false
+    scrollActiveLine(true)
+}
+
+function stopAutomatticScrolling() {
+    free_scroll = true
+    document.querySelectorAll('.inactive').forEach(e => { e.classList.remove('inactive') })
+    document.querySelector('#resume_scrolling').classList.remove('mdc-fab--exited')
+}
+
 window.onscroll = e => {
     // If lyrics are scrolling, don't detect for user scroll
     if (is_lyric_scrolling && !free_scroll) {
@@ -96,6 +119,11 @@ window.onscroll = e => {
             is_lyric_scrolling = false
         }
     } else { // Lyrics aren't scrolling, if user scrolls, stop the lyrics scrolling
-        free_scroll = true
+        stopAutomatticScrolling()
     }
+}
+
+export function resumeScrolling() {
+    free_scroll = false
+    resumeAutonatticScrolling()
 }

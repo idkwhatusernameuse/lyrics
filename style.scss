@@ -1,5 +1,11 @@
+@use "@material/theme" with (
+  $primary: rgb(139, 40, 219),
+  $secondary: rgba(0, 255, 255, 0),
+);
 @use '@material/button/mdc-button';
 @use '@material/button';
+@use "@material/fab/mdc-fab";
+@use "@material/ripple";
 
 @include button.core-styles;
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
@@ -7,6 +13,13 @@
 $background-color: black;
 $text-color: white;
 $shadow: 0px 0px 5px black;
+
+.mdc {
+    @include ripple.surface;
+    @include ripple.radius-bounded;
+    @include ripple.states;
+    overflow: hidden;
+}
 
 * {
     margin: 0px;
@@ -25,7 +38,8 @@ body {
     text-shadow: $shadow;
 }
 
-.home-content {
+.main {
+    z-index: 1;
     padding: 32px;
     h1 {
         margin-bottom: 16px;
@@ -40,7 +54,6 @@ body {
     .button-div {
         margin-top: 8px;
         margin-bottom: 8px;
-        --mdc-theme-primary: rgb(139, 40, 219);
     }
     #start-lyrics {
         --mdc-theme-primary: rgb(44, 44, 44);
@@ -52,8 +65,9 @@ body {
 }
 
 .lyrics {
+    z-index: 2;
     display: none;
-    padding-top: 20vh;
+    padding-top: 17vh;
     padding-bottom: 80vh;
     width: 80vw;
     margin: auto;
@@ -65,9 +79,10 @@ body {
         padding: 16px 64px 16px 64px;
         opacity: 0.4;
         transform: scale(0.95);
-        //transition-timing-function: cubic-bezier(.64,.13,.48,1);
         transition-duration: 500ms;
         cursor: pointer;
+    }
+    .inactive {
         filter: blur(2px);
     }
     .active {
@@ -97,7 +112,55 @@ body {
     }
 }
 
+.wrapper {
+    position: relative;
+}
+
+.main, .overlay, .lyrics {
+    position: absolute;
+    left: 0px;
+}
+
+.main, .lyrics, .song-info{
+    top: 0px;
+}
+
+.controls {
+    bottom: 0px;
+}
+
+.overlay {
+    width: 100vw;
+    padding: 32px 6vw 32px 6vw;
+    position: fixed;
+    z-index: 3;
+    transition-duration: 1s;
+}
+
+.song-info {
+    display: none;
+    align-items: center;
+    img {
+        box-shadow: $shadow;
+        border-radius: 10px;
+        width: 75px;
+        height: 75px;
+        margin-right: 16px;
+    }
+}
+
+.controls {
+    display: none;
+    bottom: 0;
+    .mdc-fab {
+        margin-right: 16px;
+    }
+}
+
 @media only screen and (max-width: 1000px) {
+    .overlay {
+        padding: 32px 42px 32px 42px;
+    }
     .lyrics {
         width: 95vw;
         p {
