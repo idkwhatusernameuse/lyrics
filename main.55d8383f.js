@@ -433,4 +433,4 @@ module.exports=function(n){return new Promise(function(e,o){var r=document.creat
 },{}],0:[function(require,module,exports) {
 var b=require("oBPc");b.register("js",require("uYd9"));
 },{}]},{},[0,"d6sW"], null)
-//# sourceMappingURL=/main.55d8383f.js.map
+//# sourceMappingURL=/lyrics/main.55d8383f.js.map
