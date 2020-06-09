@@ -46,7 +46,6 @@ function highlightNextLine() {
         if (!free_scroll) lyric_elements[position - 1].classList.add('inactive')
     } catch (e) { }
     // Make it the active one
-    console.log('highlight ' + position)
     lyric_elements[position].classList.add('active')
 }
 
