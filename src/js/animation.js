@@ -97,6 +97,7 @@ function getRandomInt(min, max) {
 }
 
 export function resumeAutonatticScrolling() {
+    document.querySelector('.controls').classList.add('hidden-lines-fab')
     document.querySelector('.resume_scrolling').classList.add('mdc-fab--exited')
     lyric_elements.forEach(e => { e.classList.add('inactive') })
     free_scroll = false
@@ -107,6 +108,7 @@ function stopAutomatticScrolling() {
     free_scroll = true
     document.querySelectorAll('.inactive').forEach(e => { e.classList.remove('inactive') })
     document.querySelector('.resume_scrolling').classList.remove('mdc-fab--exited')
+    document.querySelector('.controls').classList.remove('hidden-lines-fab')
 }
 
 window.onscroll = e => {

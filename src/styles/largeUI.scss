@@ -26,5 +26,9 @@
         text-align: center;
         align-content: center;
         margin-bottom: 6vh;
+        transform: translateX(10px);
+    }
+    .hidden-lines-fab {
+        transform: translateX(30px);
     }
 }
