@@ -1,6 +1,6 @@
 .largeUI {
     .lyrics {
-        padding-top: 35vh;
+        padding-top: 37vh;
         padding-bottom: 20vh;
         width: 60vw;
         right: 0px;
@@ -8,6 +8,9 @@
             font-size: 60px;
             margin: 32px;
             padding: 16px 0px 16px 0px;
+        }
+        .active {
+            transform: scale(1) translateX(1.5vw);
         }
     }
     .song-info {
@@ -26,9 +29,9 @@
         text-align: center;
         align-content: center;
         margin-bottom: 6vh;
-        transform: translateX(10px);
+        transform: translateX(5px);
     }
     .hidden-lines-fab {
-        transform: translateX(30px);
+        transform: translateX(35px);
     }
 }

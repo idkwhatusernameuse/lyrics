@@ -1,8 +1,9 @@
-import { changePosition } from './animation.js'
+import { goToLine } from './lyrics.js'
 import { changeAudioPosition, resume } from './main.js'
 
 export function parseLyrics(lrc) {
     let lines = lrc.match(/[^\r\n]+/g) // https://stackoverflow.com/a/5035058
+    // Start with an empty line
     let lyrics = []
     for (let i = 0; i < lines.length; i++) {
         let minute = lines[i].substring(1,3)
@@ -26,11 +27,7 @@ export function createLyricInHTML(lyrics) {
         element.className = 'lyric-line inactive'
         element.innerHTML = lyrics[i].text
         element.dataset.timestamp = lyrics[i].timestamp
-        element.onclick = e => {
-            changePosition(i)
-            changeAudioPosition(element.dataset.timestamp)
-            if (!window.state) resume()
-        }
+        element.onclick = e => { goToLine({ index: i, with_audio: true }) }
         section.appendChild(element)
     }
 }

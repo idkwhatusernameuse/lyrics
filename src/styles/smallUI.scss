@@ -8,6 +8,9 @@
             margin: 8px 64px 8px 0px;
             padding: 16px 0px 16px 0px;
         }
+        .active {
+            transform: scale(1) translateX(2vw);
+        }
     }
 
     .background {
@@ -34,8 +37,5 @@
     
     .controls {
         bottom: 0;
-        .mdc-fab {
-            margin-right: 16px;
-        }
     }
 }

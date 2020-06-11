@@ -1,4 +1,4 @@
-import { resumeScrolling, scrollActiveLine } from './animation.js'
+import { resume, scrollToActiveLine } from './lyrics.js'
 
 export function isSmallScreen() {
     // 1404 x 1080 and equivalent
@@ -15,5 +15,4 @@ export function applyUIforLargerScreens() {
 
 window.onresize = () => {
     applyUIforLargerScreens()
-    resumeScrolling()
 }
