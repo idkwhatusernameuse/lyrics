@@ -92,19 +92,7 @@ h1 {
     filter: blur(200px);
     position: fixed;
     svg {
-        transition-duration: 5s;
-    }
-    .blob1 {
-        transform: translateX(50vw) translateY(-50vh);
-    }
-    .blob2 {
-        transform: translateX(-20vw) translateY(-150vh);
-    }
-    .blob3 {
-        transform: translateX(50vw) translateY(-200vh);
-    }
-    .blob4 {
-        transform: translateX(-50vw) translateY(-280vh);
+        transition-duration: 15s;
     }
 }
 

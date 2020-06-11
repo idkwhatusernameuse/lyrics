@@ -71,7 +71,7 @@ song_input.onchange = e => {
             document.querySelector('.lyrics').style.display = 'none'
             document.querySelector('.main').style.display = 'block'
             // Remove all lyric lines from HTML
-            //document.querySelectorAll('.lyric-line').forEach(e => { e.remove() })
+            document.querySelectorAll('.lyric-line').forEach(e => { e.remove() })
         }
     }
 }

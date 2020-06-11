@@ -20,16 +20,16 @@ function getRandomInt(min, max) {
 
 // Animate background blobs. Should be running at all times!
 export function animate() {
-    let numberX = getRandomInt(0, 100)
-    let numberY = getRandomInt(-100, 0)
+    let numberX = getRandomInt(-100, 100)
+    let numberY = getRandomInt(-180, 50)
     document.querySelector('.blob1').style.transform = 'translateX(' + numberX + 'vw) translateY(' + numberY + 'vh)'
-    numberX = getRandomInt(-100, 0)
-    numberY = getRandomInt(-200, -100)
+    numberX = getRandomInt(-100, 100)
+    numberY = getRandomInt(-350, -150)
     document.querySelector('.blob2').style.transform = 'translateX(' + numberX + 'vw) translateY(' + numberY + 'vh)'
-    numberX = getRandomInt(0, 100)
-    numberY = getRandomInt(-200, -300)
+    numberX = getRandomInt(-100, 100)
+    numberY = getRandomInt(-580, -370)
     document.querySelector('.blob3').style.transform = 'translateX(' + numberX + 'vw) translateY(' + numberY + 'vh)'
-    numberX = getRandomInt(-100, 0)
-    numberY = getRandomInt(-200, -300)
+    numberX = getRandomInt(-100, 100)
+    numberY = getRandomInt(-600, -400)
     document.querySelector('.blob4').style.transform = 'translateX(' + numberX + 'vw) translateY(' + numberY + 'vh)'
 }
