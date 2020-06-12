@@ -94,6 +94,9 @@ h1 {
     svg {
         transition-duration: 15s;
     }
+    .blob1path, .blob2path, .blob3path, .blob4path { 
+        fill: transparent;
+    }
 }
 
 .main, .overlay {
