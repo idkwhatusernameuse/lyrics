@@ -29,26 +29,76 @@
     
         <div class="main">
             <h1>Lyrics</h1>
-            <div class="buttons">
+            <div class="mdc-tab-bar" role="tablist">
+                <div class="mdc-tab-scroller">
+                  <div class="mdc-tab-scroller__scroll-area">
+                    <div class="mdc-tab-scroller__scroll-content">
+                      <button class="mdc-tab mdc-tab--active local-song-tab" role="tab" aria-selected="true" tabindex="0">
+                        <span class="mdc-tab__content">
+                          <span class="mdc-tab__icon material-icons" aria-hidden="true">folder_open</span>
+                          <span class="mdc-tab__text-label">Local song</span>
+                        </span>
+                        <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                          <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                        </span>
+                        <span class="mdc-tab__ripple"></span>
+                      </button>
+                      <button class="mdc-tab search-tab" role="tab" aria-selected="true" tabindex="0">
+                        <span class="mdc-tab__content">
+                          <span class="mdc-tab__icon material-icons" aria-hidden="true">cloud</span>
+                          <span class="mdc-tab__text-label">Search</span>
+                        </span>
+                        <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                          <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                        </span>
+                        <span class="mdc-tab__ripple"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="local-song buttons">
                 <div class="button-div">
                     <button class="mdc mdc-button mdc-button--raised" id="lrc-button">
                         <span class="mdc-button__label">Load .lrc file</span>
                     </button>
-                    <a id="lrc-file-text">No file selected</a>
+                    <span class="text" id="lrc-file-text">No file selected</span>
                 </div>
                 <div class="button-div">
                     <button class="mdc mdc-button mdc-button--raised" id="song-button">
                         <span class="mdc-button__label">Load song file</span>
                     </button>
-                    <a id="song-file-text">No file selected</a>
+                    <span class="text" id="song-file-text">No file selected</span>
                 </div>
                 <button class="mdc mdc-button mdc-button--raised" id="start-lyrics">
                     <span class="mdc-button__label">Start</span>
                 </button>
+            
+                <input id="lrc-input" type="file" name="lrc"/>
+                <input id="song-input" type="file" name="song"/>
             </div>
-    
-            <input id="lrc-input" type="file" name="lrc"/>
-            <input id="song-input" type="file" name="song"/>
+
+            <div class="search">
+                <label class="mdc-text-field mdc-text-field--filled mdc-text-field--with-trailing-icon">
+                    <span class="mdc-text-field__ripple"></span>
+                    <input class="mdc-text-field__input song-keywords" type="text" aria-labelledby="song-keywords">
+                    <i class="material-icons mdc-text-field__icon mdc-text-field__icon--trailing search-icon" tabindex="0" role="button">search</i>
+                    <span class="mdc-floating-label" id="song-keywords">Search...</span>
+                    <span class="mdc-line-ripple"></span>
+                </label>
+                <div role="progressbar" class="mdc-linear-progress mdc-linear-progress--indeterminate" aria-label="Progress Bar" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
+                    <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+                      <span class="mdc-linear-progress__bar-inner"></span>
+                    </div>
+                    <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+                      <span class="mdc-linear-progress__bar-inner"></span>
+                    </div>
+                </div>
+
+                <ul class="mdc-list mdc-list--two-line search-results">
+                </ul>
+            </div>
         </div>
     
         <div class="lyrics"></div>

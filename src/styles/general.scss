@@ -1,12 +1,29 @@
 @use "@material/theme" with (
-  $primary: rgb(139, 40, 219),
-  $secondary: rgba(0, 255, 255, 0),
+    $primary: rgb(139, 40, 219),
 );
 @use '@material/button/mdc-button';
 @use '@material/button';
 @use "@material/fab/mdc-fab";
 @use "@material/ripple";
+@use "@material/textfield";
+@use "@material/floating-label/mdc-floating-label";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/notched-outline/mdc-notched-outline";
+@use "@material/textfield/icon";
+@use "@material/linear-progress/mdc-linear-progress";
+@use "@material/tab-bar/mdc-tab-bar";
+@use "@material/tab-scroller/mdc-tab-scroller";
+@use "@material/tab-indicator/mdc-tab-indicator";
+@use "@material/tab/mdc-tab";
+@use "@material/list";
+
+@include icon.icon-core-styles;
+@include textfield.core-styles;
 @include button.core-styles;
+@include list.core-styles;
+
+@import "@material/theme/mdc-theme";
+@import "@material/theme/mixins";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 .mdc {
@@ -14,6 +31,17 @@
     @include ripple.radius-bounded;
     @include ripple.states;
     overflow: hidden;
+}
+
+.mdc-tab-bar {
+    --mdc-theme-primary: white;
+    .mdc-tab__text-label, .mdc-tab__icon {
+        color: white;
+    } 
+}
+
+.mdc-list-item__secondary-text {
+    color: white;
 }
 
 * {
@@ -39,30 +67,59 @@ h1 {
 
 .wrapper {
     position: relative;
-    margin: 32px;
+    padding: 32px;
 }
 
 .main {
+    border-radius: 16px;
+    margin: 32px;
+    padding: 32px;
+    background-color: rgba($color: #000000, $alpha: 0.6);
     z-index: 1;
     h1 {
         margin-bottom: 16px;
-        font-size: 34px;
-    }
-    a {
-        text-decoration: none;
+        font-size: 40px;
+    } 
+    .text {
         margin-left: 8px;
         vertical-align: middle;
     }
-    .button-div {
+    .local-song {
         margin-top: 8px;
-        margin-bottom: 8px;
-    }
-    #start-lyrics {
-        --mdc-theme-primary: rgb(44, 44, 44);
-    }
-    input {
         display: none;
+        input {
+            display: none;
+        }
+        .button-div {
+            margin-bottom: 8px;
+        }
+        #start-lyrics {
+            --mdc-theme-primary: rgb(44, 44, 44);
+        }
     }
+    .search {
+        margin-top: 8px;
+        display: grid;
+        .mdc-linear-progress {
+            --mdc-theme-primary: white;
+            display: none;
+        }
+        .search-results {
+            overflow-y: auto;
+            max-height: 57vh;
+        }
+        img {
+            margin-left: -8px;
+            margin-right: 16px;
+            border-radius: 8px;
+            width: 50px;
+            height: 50px;
+        }
+    }
+}
+
+.fill-screen {
+    
 }
 
 .lyrics {
@@ -94,9 +151,10 @@ h1 {
     svg {
         transition-duration: 15s;
     }
-    .blob1path, .blob2path, .blob3path, .blob4path { 
-        fill: transparent;
-    }
+    .blob1path { fill: indigo }
+    .blob2path { fill: red } 
+    .blob3path { fill: orange } 
+    .blob4path { fill: pink } 
 }
 
 .main, .overlay {
