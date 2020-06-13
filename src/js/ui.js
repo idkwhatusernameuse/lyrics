@@ -25,6 +25,9 @@ var lyrics
 export function switchLyricsDisplay(show_lyrics) {
     let visibility = !show_lyrics
     if (visibility === true) {
+        Lyrics.stop()
+        window.audio.pause()
+        window.audio.currentTime = 0
         // Remove all lyric lines from HTML
         document.querySelectorAll('.lyric-line').forEach(e => { e.remove() })
         document.title = 'Lyrics'

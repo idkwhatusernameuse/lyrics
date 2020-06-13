@@ -106,6 +106,9 @@ h1 {
     .search {
         margin-top: 8px;
         display: none;
+        p {
+            margin-bottom: 8px;
+        }
         .search-results {
             overflow-y: auto;
             max-height: 57vh;
@@ -126,6 +129,7 @@ h1 {
         }
         .go-back {
             display: none;
+            margin-bottom: 8px;
         }
     }
 }

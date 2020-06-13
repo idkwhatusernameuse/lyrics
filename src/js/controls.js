@@ -1,4 +1,5 @@
 import * as Lyrics from './lyrics.js'
+import * as UI from './ui.js'
 
 export function init() {
     // Play pause button
@@ -12,7 +13,7 @@ export function init() {
     var stop = document.querySelector('.stop')
 
     stop.onclick = () => {
-        window.audio.currentTime = 9999999999999 // yeet
+        UI.switchLyricsDisplay()
     }
 
     // Hide controls when mouse has not moved for 5 seconds

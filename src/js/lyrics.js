@@ -8,12 +8,12 @@ var controls = document.querySelector('.controls')
 export function start() {
     window.audio.play()
     Control.init()
-    //resumeTime = 0
     auto_scroll = true // Enable automattic scrolling
     position = 0
     current_active_line = 0
     lyric_lines = document.querySelectorAll('.lyric-line')
-    setTimeout(goToLine,  lyric_lines[0].dataset.timestamp * 1000)
+    let temp_time = lyric_lines[0].dataset.timestamp * 1000
+    setTimeout(goToLine, temp_time)
 }
 
 // Sort of resuming the lyrics, only if paused
@@ -43,6 +43,11 @@ export function pause(only_scrolling) {
         document.querySelector('.playpause_icon').innerHTML = 'play_arrow'
         clearTimeout(timeout)
     }
+}
+
+// Stop completely
+export function stop() {
+    clearTimeout(timeout)
 }
 
 // Animate the active line. Should be running only while the song is playing.

@@ -7,10 +7,19 @@ export function load(song) {
     let search = document.querySelector('.search')
     let loading = document.querySelector('.loading')
     let text = document.querySelector('.loading-text')
+    let go_back = document.querySelector('.go-back')
+    let start_lyrics = document.querySelector('.start-lyrics')
     progress_bar.style.display = 'inherit'
     search.style.display = 'none'
     loading.style.display = 'inherit'
     text.innerHTML = "Loading " + song.artist + ' - ' + song.title
+
+    go_back.onclick = () => {
+        search.style.display = 'grid'
+        loading.style.display = 'none'
+        go_back.style.display = 'none'
+        start_lyrics.style.display = 'none'
+    }
 
     NetEase.getSong(song)
     .then(data => {
@@ -18,19 +27,15 @@ export function load(song) {
         newData.lyrics = parseLyrics(data.lyrics)
         UI.setSongDetails(newData)
         progress_bar.style.display = 'none'
+        go_back.style.display = 'inherit'
+        start_lyrics.style.display = 'inherit'
         text.innerHTML = song.artist + ' - ' + song.title
-        document.querySelector('.start-lyrics').onclick = () => {
+        start_lyrics.onclick = () => {
             UI.switchLyricsDisplay(true)
         }
     })
     .catch(() => {
-        let go_back = document.querySelector('.go-back')
-        go_back.style.display = 'inherit'
-        go_back.onclick = () => {
-            search.style.display = 'grid'
-            loading.style.display = 'none'
-            go_back.style.display = 'none'
-        }
+        go_back.style.display = 'inline-block'
         progress_bar.style.display = 'none'
             text.innerHTML = "There was an error trying to load the song (could be that there wasn't lyrics or an audio file for this song)"
     })
