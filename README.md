@@ -7,7 +7,6 @@ You can test it [here](https://idkwhatusernameuse.github.io/lyrics) (beta!)
 ### Planned things
 
 - Fix bugs and create more bugs
-- Automatically search for synced lyrics
 
 ### Known bugs
 

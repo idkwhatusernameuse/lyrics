@@ -1,24 +1,28 @@
-// Play pause button
-var play_pause = document.querySelector('.playpause')
+import * as Lyrics from './lyrics.js'
 
-play_pause.onclick = () => {
-    window.audio.paused ? Lyrics.resume() : Lyrics.pause()
-}
+export function init() {
+    // Play pause button
+    var play_pause = document.querySelector('.playpause')
 
-// Stop button
-var stop = document.querySelector('.stop')
+    play_pause.onclick = () => {
+        window.audio.paused ? Lyrics.resume() : Lyrics.pause()
+    }
 
-stop.onclick = () => {
-    window.audio.currentTime = 9999999999999 // yeet
-}
+    // Stop button
+    var stop = document.querySelector('.stop')
 
-// Hide controls when mouse has not moved for 5 seconds
-var hide_timeout
+    stop.onclick = () => {
+        window.audio.currentTime = 9999999999999 // yeet
+    }
 
-window.onpointermove = () => {
-    document.querySelector('.controls').style.opacity = 1
-    if (hide_timeout !== undefined) clearTimeout(hide_timeout)
-    hide_timeout = setTimeout(function() {
-        document.querySelector('.controls').style.opacity = 0
-    }, 5000)
+    // Hide controls when mouse has not moved for 5 seconds
+    var hide_timeout
+
+    window.onpointermove = () => {
+        document.querySelector('.controls').style.opacity = 1
+        if (hide_timeout !== undefined) clearTimeout(hide_timeout)
+        hide_timeout = setTimeout(function() {
+            document.querySelector('.controls').style.opacity = 0
+        }, 5000)
+    }
 }

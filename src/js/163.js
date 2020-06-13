@@ -40,20 +40,23 @@ function getLyrics(song_id) {
         .then(res => res.json())
         .then(
             body => {
-                let lrc = body.lrc.lyric
-                // Do some lrc processing
-                resolve(lrc)
-            },
-            () => {
-                reject(undefined)
+                if (body.lrc !== undefined) {
+                    let lrc = body.lrc.lyric
+                    // Remove extra info from file
+                    let data = lrc.substring(lrc.indexOf('[0'))
+                    resolve(data)
+                } else {
+                    throw new Error("There are no lyrics for this song")
+                }
             }
-        )
+        ).catch(error => reject(error))
     })
 }
 
 function getCover(song_id) {
+    let url = api + endpoints.song_details + song_id
     return new Promise((resolve, reject) => {
-        fetch(api + endpoints.song_details + song_id)
+        fetch(url)
         .then(res => res.json())
         .then(
             body => {
@@ -68,29 +71,31 @@ function getCover(song_id) {
 }
 
 function getSongUrl(song_id){
+    let url = api + endpoints.song + song_id
     return new Promise((resolve, reject) => {
-        fetch(api + endpoints.song + song_id)
+        fetch(url)
         .then(res => res.json())
         .then(
             body => {
-                resolve(body.data[0].url)
-            },
-            () => {
-                reject(undefined)
+                if (body.data[0].url !== null) {
+                    resolve(body.data[0].url)
+                } else {
+                    throw new Error("There is no audio file for this song")
+                }
             }
-        )
+        ).catch(error => reject(error))
     })
 }
 
 export function getSong(song) {
     return new Promise((resolve, reject) => {
-        Promise.all([getSongUrl(song.id), getLyrics(song.id)])
+        Promise.all([getSongUrl(song.id), getLyrics(song.id), getCover(song.id)])
         .then((values) => {
             resolve({
                 'title': song.title,
                 'artist': song.artist,
-                'cover': song.cover,
-                'song_url': values[0],
+                'cover': values[2],
+                'audio': values[0],
                 'lyrics': values[1]
             })
         }, () => reject(undefined))

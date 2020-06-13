@@ -1,3 +1,5 @@
+import * as Control from './controls.js'
+
 var position, lyric_lines, timeout, newPosition, is_lyric_scrolling, auto_scroll, time, current_active_line
 var resume_scrolling = document.querySelector('.resume_scrolling')
 var controls = document.querySelector('.controls')
@@ -5,13 +7,13 @@ var controls = document.querySelector('.controls')
 // Start the animation from scratch
 export function start() {
     window.audio.play()
+    Control.init()
     //resumeTime = 0
     auto_scroll = true // Enable automattic scrolling
     position = 0
     current_active_line = 0
     lyric_lines = document.querySelectorAll('.lyric-line')
-    let temp_time = lyric_lines[position].dataset.timestamp * 1000
-    setTimeout(goToLine, temp_time)
+    setTimeout(goToLine,  lyric_lines[0].dataset.timestamp * 1000)
 }
 
 // Sort of resuming the lyrics, only if paused
@@ -37,7 +39,6 @@ export function pause(only_scrolling) {
         resume_scrolling.classList.remove('mdc-fab--exited')
         controls.classList.remove('hidden-lines-fab')
     } else {
-        //resumeTime = Date.now() - resumeTime
         window.audio.pause()
         document.querySelector('.playpause_icon').innerHTML = 'play_arrow'
         clearTimeout(timeout)

@@ -33,7 +33,7 @@
                 <div class="mdc-tab-scroller">
                   <div class="mdc-tab-scroller__scroll-area">
                     <div class="mdc-tab-scroller__scroll-content">
-                      <button class="mdc-tab mdc-tab--active local-song-tab" role="tab" aria-selected="true" tabindex="0">
+                      <button class="mdc-tab mdc-tab--active local-song-tab" role="tab" aria-selected="true" tabindex="1">
                         <span class="mdc-tab__content">
                           <span class="mdc-tab__icon material-icons" aria-hidden="true">folder_open</span>
                           <span class="mdc-tab__text-label">Local song</span>
@@ -43,12 +43,12 @@
                         </span>
                         <span class="mdc-tab__ripple"></span>
                       </button>
-                      <button class="mdc-tab search-tab" role="tab" aria-selected="true" tabindex="0">
+                      <button class="mdc-tab search-tab" role="tab" aria-selected="false" tabindex="1">
                         <span class="mdc-tab__content">
                           <span class="mdc-tab__icon material-icons" aria-hidden="true">cloud</span>
                           <span class="mdc-tab__text-label">Search</span>
                         </span>
-                        <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                        <span class="mdc-tab-indicator">
                           <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
                         </span>
                         <span class="mdc-tab__ripple"></span>
@@ -71,9 +71,6 @@
                     </button>
                     <span class="text" id="song-file-text">No file selected</span>
                 </div>
-                <button class="mdc mdc-button mdc-button--raised" id="start-lyrics">
-                    <span class="mdc-button__label">Start</span>
-                </button>
             
                 <input id="lrc-input" type="file" name="lrc"/>
                 <input id="song-input" type="file" name="song"/>
@@ -87,7 +84,7 @@
                     <span class="mdc-floating-label" id="song-keywords">Search...</span>
                     <span class="mdc-line-ripple"></span>
                 </label>
-                <div role="progressbar" class="mdc-linear-progress mdc-linear-progress--indeterminate" aria-label="Progress Bar" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
+                <div role="progressbar" class="search-progress mdc-linear-progress mdc-linear-progress--indeterminate" aria-label="Progress Bar" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
                     <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
                       <span class="mdc-linear-progress__bar-inner"></span>
                     </div>
@@ -99,6 +96,24 @@
                 <ul class="mdc-list mdc-list--two-line search-results">
                 </ul>
             </div>
+
+            <div class="loading">
+                <div role="progressbar" class="loading-progress mdc-linear-progress mdc-linear-progress--indeterminate" aria-label="Progress Bar" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
+                    <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+                      <span class="mdc-linear-progress__bar-inner"></span>
+                    </div>
+                    <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+                      <span class="mdc-linear-progress__bar-inner"></span>
+                    </div>
+                </div>
+                <p class="loading-text"></p>
+                <button class="mdc mdc-button mdc-button--raised go-back">
+                    <span class="mdc-button__label">Go back</span>
+                </button>
+            </div>
+            <button class="mdc mdc-button mdc-button--raised start-lyrics">
+                <span class="mdc-button__label">Start</span>
+            </button>
         </div>
     
         <div class="lyrics"></div>

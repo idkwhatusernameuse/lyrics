@@ -9,7 +9,7 @@ export function parseLyrics(lrc) {
         let minute = lines[i].substring(1,3)
         let second = lines[i].substring(4,6)
         let millisecond = lines[i].substring(7,9)
-        let line = lines[i].substring(10)
+        let line = lines[i].substring(lines[i].indexOf(']') + 1)
         if (line !== '') {
             lyrics.push({
                 'timestamp': (parseInt(minute) * 60) + parseInt(second) + (parseFloat(millisecond) / 100),

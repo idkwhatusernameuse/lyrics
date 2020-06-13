@@ -1,15 +1,13 @@
 import * as Background from './background.js'
 import * as UI from './ui.js'
+import * as Components from './components.js'
 import * as MDCWeb from './material_components_web.js'
-import * as LocalSongs from './local_songs.js'
-import * as Search from './search.js'
-import 'regenerator-runtime/runtime'
+import * as LocalSong from './local_songs.js'
 
 MDCWeb.init()
-LocalSongs.init()
-Search.init()
+LocalSong.init()
 
-UI.declareTemplates()
+Components.declareTemplates()
 UI.applyUIforLargerScreens()
 Background.animate()
 setInterval(Background.animate, 10000)
