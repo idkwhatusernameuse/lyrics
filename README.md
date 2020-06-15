@@ -11,6 +11,7 @@ You can test it [here](https://idkwhatusernameuse.github.io/lyrics) (beta!)
 ### Known bugs
 
 - You tell me lol
+- Online lyrics are now dead. (RIP music.linkorg.club)
 
 ### License
 
